@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "oled-switch")(type "KiCad")(uri "/Users/bigtreehouse/model_routine/oled-80/kicad/oled-breakout/symbols/oled-switch.kicad_sym")(options "")(descr ""))
+)

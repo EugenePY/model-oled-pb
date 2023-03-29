@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "display")(type "KiCad")(uri "${KIPRJMOD}/footprint/display.pretty")(options "")(descr ""))
+  (lib (name "logo")(type "KiCad")(uri "${KIPRJMOD}/footprint/logo.pretty")(options "")(descr ""))
+)
