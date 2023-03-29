@@ -1,4 +1,0 @@
-(fp_lib_table
-  (lib (name "display")(type "KiCad")(uri "/Users/bigtreehouse/model_routine/oled-80/kicad/oled-breakout/footprint/display.pretty")(options "")(descr ""))
-  (lib (name "logo")(type "KiCad")(uri "/Users/bigtreehouse/model_routine/oled-80/kicad/oled-breakout/footprint/logo.pretty")(options "")(descr ""))
-)
