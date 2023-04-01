@@ -1,0 +1,32 @@
+site_name: AKIRA-GB
+repo_url: https://github.com/EugenePY/model-oled-pb
+nav:
+    - Home: index.md
+    - Features: gb_rule.md
+    - Flashing Firmware: flashing.md
+
+theme:
+  name: material
+
+plugins:
+  - glightbox
+  - search
+  - alternate-link
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+extra_css:
+  - styles/extra.css
+
+extra:
+  extra:
+  version:
+    provider: mike
+  alternate:
+    - name: English
+      link: /en/ 
+      lang: en
