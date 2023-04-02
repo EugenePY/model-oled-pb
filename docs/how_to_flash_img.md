@@ -28,8 +28,13 @@ Keymake is a web application designed to upload and edit image to __Model OLED__
 2. Deleted the default file OLED.IMG, then drag the new image to the device.
 
 ```note 
-the keyboard is simulated as a USB-MSD the keyboard itself do not have a actual file system, so the file you download from ModelOLED is the flash memory block is not the actual image file, the keyboard canonot really serve as a real usb.
+the keyboard is simulated as a USB-MSD the keyboard itself do not have a actual 
+file system, so the file you download from ModelOLED is the flash memory block, 
+not the actual image file that normaly you expected from getting from a USB thumb 
+drive, the keyboard canonot really serve as a real usb thrumb drive.
 ```
 
-3. When the upload is finished the keyboard will reset automatically, and USB-MSC will be disconnected, eject the USB-MSC, or replug the keyboard into the computer, the new image will be shown on the oled screen.
+3. When the upload is finished the keyboard will reset automatically, and USB-MSC 
+will be disconnected, eject the USB-MSC, or replug the keyboard into the computer, 
+the new image will be shown on the oled screen.
 
