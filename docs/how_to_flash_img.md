@@ -3,16 +3,10 @@
 ## Flash Main Firmware
 1. Flashing Throught DFU or QMK Toolbox 
 
-## Image Format
-OLED.IMG
-
-### 565RGB
+## Image Format OLED.IMG
 the format of the OLED.IMG is 565RGB, and for a 64x48 image is 64 x 48 x 2 bytes.
-
 IMG size RGB 64 x 48  
-
-
-## Config Image 
+more detail please refer to `img_format.md`.
 
 ### Keymake
 Keymake is a web application designed to upload and edit image to __Model OLED__.
