@@ -32,3 +32,6 @@ drive, the keyboard canonot really serve as a real usb thrumb drive.
 will be disconnected, eject the USB-MSC, or replug the keyboard into the computer, 
 the new image will be shown on the oled screen.
 
+### OSX Platform
+
+
