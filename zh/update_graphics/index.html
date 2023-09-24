@@ -341,6 +341,26 @@
     所需預安裝軟體
   </a>
   
+    <nav class="md-nav" aria-label="所需預安裝軟體">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qmk-cli" class="md-nav__link">
+    QMK CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oled-utils" class="md-nav__link">
+    OLED-UTILS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -365,17 +385,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#oled-utils_1" class="md-nav__link">
+    OLED-UTILS
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#model-olde-usb-msd-mode" class="md-nav__link">
-    將Model OLDE 進入 USB-MSD mode
+  <a href="#modeloled" class="md-nav__link">
+    將圖片上傳至ModelOLED
   </a>
   
-    <nav class="md-nav" aria-label="將Model OLDE 進入 USB-MSD mode">
+    <nav class="md-nav" aria-label="將圖片上傳至ModelOLED">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -481,6 +508,26 @@
     所需預安裝軟體
   </a>
   
+    <nav class="md-nav" aria-label="所需預安裝軟體">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qmk-cli" class="md-nav__link">
+    QMK CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oled-utils" class="md-nav__link">
+    OLED-UTILS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -505,17 +552,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#oled-utils_1" class="md-nav__link">
+    OLED-UTILS
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#model-olde-usb-msd-mode" class="md-nav__link">
-    將Model OLDE 進入 USB-MSD mode
+  <a href="#modeloled" class="md-nav__link">
+    將圖片上傳至ModelOLED
   </a>
   
-    <nav class="md-nav" aria-label="將Model OLDE 進入 USB-MSD mode">
+    <nav class="md-nav" aria-label="將圖片上傳至ModelOLED">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -580,6 +634,9 @@
 </li>
 </ol>
 <h2 id="_2">所需預安裝軟體</h2>
+<p>目前圖片轉換有兩種工具是透<strong>QMK CLI</strong>, 另外是<a href="/zh/oled_util_guide">OLED-UTILS</a>請選擇一個安裝</p>
+<p><strong>QMK CLI</strong>需自行將圖片裁切成<strong>64x48</strong>, <strong>OLED-UTILS</strong>則由提供自動化的工具。</p>
+<h3 id="qmk-cli">QMK CLI</h3>
 <ol>
 <li>Windows 使用者需安裝<a href="https://msys.qmk.fm/">QMK MSYS</a></li>
 <li>Mac 使用者需安裝<a href="https://github.com/qmk/qmk_cli">QMK CLI</a></li>
@@ -624,6 +681,10 @@
 <span class="linenos" data-linenos="23 "></span><span class="go">Ψ - lib/lvgl: 2022-04-11 04:44:53 -0600 --  (e19410f)</span>
 <span class="linenos" data-linenos="24 "></span><span class="go">Ψ QMK is ready to go, but minor problems were found</span>
 </code></pre></div>
+<h3 id="oled-utils">OLED-UTILS</h3>
+<ol>
+<li>如果使用<a href="oled_util_guide">OLED-UTILS</a>請參考安裝過程。</li>
+</ol>
 <h2 id="_3">圖片轉換</h2>
 <p>轉換圖片有兩種方法</p>
 <ol>
@@ -660,7 +721,22 @@
 </div>
 </div>
 </div>
-<h2 id="model-olde-usb-msd-mode">將<strong>Model OLDE</strong> 進入 USB-MSD mode</h2>
+<h3 id="oled-utils_1">OLED-UTILS</h3>
+<p>如果使用OLED-UTILS使用方式如下</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">OSX/Terminal</label><label for="__tabbed_4_2">Windows/QMK MSYS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>oled-utils.osx {path/欲轉換得檔案.gif/.png} graphic2qgf
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>oled-utils.win {path/欲轉換得檔案.gif/.png} graphic2qgf
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="modeloled">將圖片上傳至<strong>ModelOLED</strong></h2>
+<p>將<strong>Model OLDE</strong> 進入 USB-MSD mode</p>
 <ol>
 <li><strong>Left Ctrl</strong> + <strong>Left ALT</strong> + <strong>ESC</strong></li>
 <li>按有定義<strong>IMG_FLASH</strong>的按鍵預設是OLED-switch。</li>
@@ -670,7 +746,7 @@
 <p>打開USB drive將OLED.qpf 刪除後，將欲放入圖片放入，<strong>按退出USB</strong>，鍵盤將reset 如果順利圖片將會在OLED上顯示。</p>
 <h3 id="mac-osx-platform">Mac使用者 OSX Platform</h3>
 <p>由於Mac USB driver 的設計，他會額外多創建資料夾(.Trash, .DStore)等等，為了排除此問題，進入<strong>USB-MSD mode</strong>會需要使用<code>rsync</code>指令，</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">OSX/Terminal</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">OSX/Terminal</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>rsync {path/of/your/file.qpf} {path/of/mounted/usbpath}
@@ -679,7 +755,7 @@
 </div>
 </div>
 <p>舉例在我的系統我執行</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">OSX/Terminal</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">OSX/Terminal</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>rsync ./keyboards/ekow/model_oled/img/oyishi.qgf /Volumes/MODEL\ OLED
