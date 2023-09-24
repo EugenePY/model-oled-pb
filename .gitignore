@@ -4,3 +4,4 @@
 .tox
 .pytest_cache
 .ccls-cache
+venv-*
