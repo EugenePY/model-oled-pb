@@ -1,15 +1,16 @@
-# Firmware Flashing
+# Graphic Update
 
-## Flash Main Firmware
-1. Flashing Throught DFU or QMK Toolbox 
+MolelOLED support update the internal Graphics using USB Mass Storage Device(USB-MSD),
+Hold Left Shift Control and press ESC the image will go in __Graphic Update Mode__, which is a USB Drive (USB-MSD), but the keyboard function will be disable.
 
-## Image Format OLED.IMG
-the format of the OLED.IMG is 565RGB, and for a 64x48 image is 64 x 48 x 2 bytes.
-IMG size RGB 64 x 48  
-more detail please refer to `img_format.md`.
 
-### Keymake
-Keymake is a web application designed to upload and edit image to __Model OLED__.
+## Pre-requirements
+1. For Windows User install [QMK MSYS](https://msys.qmk.fm/)
+2. For Mac User install [QMK CLI](https://github.com/qmk/qmk_cli)
+
+
+### QMK Quantumn Painter CLI
+
 1. Upload PNG or GIF file that you want to upload to the keyboard 
 2. Keymake will proccess the file into 64x48. 
 3. press __ESC__ and __Left Shift__ wait for the browser detech the USB-MSC, then press upload.
@@ -29,9 +30,10 @@ drive, the keyboard canonot really serve as a real usb thrumb drive.
 ```
 
 3. When the upload is finished the keyboard will reset automatically, and USB-MSC 
-will be disconnected, eject the USB-MSC, or replug the keyboard into the computer, 
-the new image will be shown on the oled screen.
+will be disconnected. the new image will be shown on the oled screen.
 
 ### OSX Platform
 
-
+```bash
+rsync ./keyboards/ekow/model_oled/img/oyishi.qgf /Volumes/MODEL\ OLED
+```
