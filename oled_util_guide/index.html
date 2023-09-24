@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../via/">
+      
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Flashing 韌體 - ModelOLED</title>
+        <title>OLED-UTILS - ModelOLED</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flashing" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Flashing 韌體
+              OLED-UTILS
             
           </span>
         </div>
@@ -186,7 +188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="features/" class="md-nav__link">
+      <a href="../features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -205,7 +207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="firmware_update/" class="md-nav__link">
+      <a href="../firmware_update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -224,7 +226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="update_graphics/" class="md-nav__link">
+      <a href="../update_graphics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -243,7 +245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="via/" class="md-nav__link">
+      <a href="../via/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -260,9 +262,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="oled_util_guide/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OLED-UTILS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -271,6 +293,40 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-file" class="md-nav__link">
+    從source file 安裝
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -302,15 +358,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    所需工具
+  <a href="#installation" class="md-nav__link">
+    Installation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#dfu-mode" class="md-nav__link">
-    DFU Mode
+  <a href="#source-file" class="md-nav__link">
+    從source file 安裝
   </a>
   
 </li>
@@ -333,15 +389,27 @@
   
 
 
-<h1 id="flashing">Flashing 韌體</h1>
-<h2 id="_1">所需工具</h2>
+<h1 id="_1">圖片轉換幫手</h1>
+<h2 id="installation">Installation</h2>
 <ol>
-<li>韌體更新可以透過<a href="https://dfu-util.sourceforge.net/">DFU</a>或是<a href="https://github.com/qmk/qmk_toolbox">QMK Toolbox</a>安裝請參考官網。</li>
+<li>從source file 直接安裝</li>
+<li>從github下載pre-compile binary</li>
 </ol>
-<h2 id="dfu-mode">DFU Mode</h2>
-<ol>
-<li>進入DFU(Direct Firmware Update) mode, 長按主控板按鈕 直到OLED關掉。</li>
-</ol>
+<h2 id="source-file">從source file 安裝</h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>git clone https://github.com/EugenePY/model-oled-pb.git 
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OSX/Terminal</label><label for="__tabbed_1_2">Windows/QMK MSYS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>pip install ./ -e
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>pip install ./ -e
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
