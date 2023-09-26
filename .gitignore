@@ -5,3 +5,7 @@
 .pytest_cache
 .ccls-cache
 venv-*
+
+build
+dist
+*.spec

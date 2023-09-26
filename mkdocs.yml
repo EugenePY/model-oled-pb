@@ -1,11 +1,11 @@
 site_name: ModelOLED
 repo_url: https://github.com/EugenePY/model-oled-pb
 nav:
-    - Index: zh/index.md
-    - Features: zh/features.md
-    - Flashing Firmware: zh/firmware_update.md
-    - Update Graphics: zh/update_graphics.md
-    - VIA: zh/via.md
+    - 主要功能: features.md
+    - Flashing韌體: firmware_update.md
+    - 更新圖片: update_graphics.md
+    - VIA: via.md
+    - OLED-UTILS: oled_util_guide.md
 
 theme:
   name: material
@@ -14,8 +14,6 @@ theme:
 
 plugins:
   - glightbox
-  - search
-  - alternate-link
 
 markdown_extensions:
   - attr_list
@@ -31,13 +29,3 @@ markdown_extensions:
 
 extra_css:
   - styles/extra.css
-
-extra:
-  alternate:
-    - name: 中文
-      link: /zh/
-      lang: zh-TW
-    - name: English
-      link: /en/ 
-      lang: en
-
