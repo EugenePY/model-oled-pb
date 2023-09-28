@@ -88,7 +88,7 @@ def graphic2qgf(ctx):
     output = open(f"{ctx.file.name.replace(f'.{extension}', '')}.qgf", "wb")
     graphic.save(output,
                  "QGF",
-                 use_deltas=True,
+                 use_deltas=False,
                  use_rle=True,
                  qmk_format=painter.valid_formats["rgb565"])
     ctx.logger.debug(f"saved, path={output.name}")
