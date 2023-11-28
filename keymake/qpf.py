@@ -49,16 +49,16 @@ class QGFGraphicsDescriptor:
 
     def write(self, fp):
         self.header.write(fp)
-        fp.write(
-            b''  # start off with empty bytes...
-            + o24(QGFGraphicsDescriptor.magic)  # magic
-            + o8(self.version)  # version
-            + o32(self.total_file_size)  # file size
-            + o32((~self.total_file_size) & 0xFFFFFFFF)  # negated file size
-            + o16(self.image_width)  # width
-            + o16(self.image_height)  # height
-            + o16(self.frame_count)  # frame count
-        )
+        fp.write(b''  # start off with empty bytes...
+                 + o24(QGFGraphicsDescriptor.magic)  # magic
+                 + o8(self.version)  # version
+                 + o32(self.total_file_size)  # file size
+                 +
+                 o32((~self.total_file_size) & 0xFFFFFFFF)  # negated file size
+                 + o16(self.image_width)  # width
+                 + o16(self.image_height)  # height
+                 + o16(self.frame_count)  # frame count
+                 )
 
 
 ########################################################################################################################
@@ -253,7 +253,8 @@ def _save(im, fp, filename):
 
     # Collect all the frame sizes
     frame_sizes = []
-    _for_all_frames(lambda idx, frame, last_frame: frame_sizes.append(frame.size))
+    _for_all_frames(
+        lambda idx, frame, last_frame: frame_sizes.append(frame.size))
 
     # Make sure all frames are the same size
     if len(list(set(frame_sizes))) != 1:
@@ -266,7 +267,9 @@ def _save(im, fp, filename):
     graphics_descriptor.frame_count = len(frame_sizes)
     graphics_descriptor.image_width = frame_sizes[0][0]
     graphics_descriptor.image_height = frame_sizes[0][1]
-    vprint(f'{"Graphics descriptor block":26s} {fp.tell():5d}d / {fp.tell():04X}h')
+    vprint(
+        f'{"Graphics descriptor block":26s} {fp.tell():5d}d / {fp.tell():04X}h'
+    )
     graphics_descriptor.write(fp)
 
     # Work out the frame offset descriptor location (and write a dummy value), so that we can come back and fill in the
@@ -314,20 +317,25 @@ def _save(im, fp, filename):
                 delta_size = (bbox[2] - bbox[0], bbox[3] - bbox[1])
 
                 # Convert the delta frame to the requested format
-                delta_converted = painter.convert_requested_format(delta_frame, format)
-                delta_graphic_data = painter.convert_image_bytes(delta_converted, format)
+                delta_converted = painter.convert_requested_format(
+                    delta_frame, format)
+                delta_graphic_data = painter.convert_image_bytes(
+                    delta_converted, format)
 
                 # Work out how large the delta frame is going to be with compression etc.
                 delta_raw_data = delta_graphic_data[1]
                 if use_rle:
-                    delta_rle_data = painter.compress_bytes_qmk_rle(delta_graphic_data[1])
-                delta_use_raw_this_frame = not use_rle or len(delta_raw_data) <= len(delta_rle_data)
+                    delta_rle_data = painter.compress_bytes_qmk_rle(
+                        delta_graphic_data[1])
+                delta_use_raw_this_frame = not use_rle or len(
+                    delta_raw_data) <= len(delta_rle_data)
                 delta_image_data = delta_raw_data if delta_use_raw_this_frame else delta_rle_data
 
                 # If the size of the delta frame (plus delta descriptor) is smaller than the original, use that instead
                 # This ensures that if a non-delta is overall smaller in size, we use that in preference due to flash
                 # sizing constraints.
-                if (len(delta_image_data) + QGFFrameDeltaDescriptorV1.length) < len(image_data):
+                if (len(delta_image_data) +
+                        QGFFrameDeltaDescriptorV1.length) < len(image_data):
                     # Copy across all the delta equivalents so that the rest of the processing acts on those
                     this_frame = delta_frame
                     location = delta_location
@@ -342,13 +350,15 @@ def _save(im, fp, filename):
 
         # Write out the frame descriptor
         frame_offsets.frame_offsets[idx] = fp.tell()
-        vprint(f'{f"Frame {idx:3d} base":26s} {fp.tell():5d}d / {fp.tell():04X}h')
+        vprint(
+            f'{f"Frame {idx:3d} base":26s} {fp.tell():5d}d / {fp.tell():04X}h')
         frame_descriptor = QGFFrameDescriptorV1()
         frame_descriptor.is_delta = use_delta_this_frame
         frame_descriptor.is_transparent = False
         frame_descriptor.format = format['image_format_byte']
         frame_descriptor.compression = 0x00 if use_raw_this_frame else 0x01  # See qp.h, painter_compression_t
-        frame_descriptor.delay = frame.info['duration'] if 'duration' in frame.info else 1000  # If we're not an animation, just pretend we're delaying for 1000ms
+        frame_descriptor.delay = frame.info[
+            'duration'] if 'duration' in frame.info else 1000  # If we're not an animation, just pretend we're delaying for 1000ms
         frame_descriptor.write(fp)
 
         # Write out the palette if required
@@ -359,11 +369,15 @@ def _save(im, fp, filename):
             # Helper to convert from RGB888 to the QMK "dialect" of HSV888
             def rgb888_to_qmk_hsv888(e):
                 hsv = rgb_to_hsv(e[0] / 255.0, e[1] / 255.0, e[2] / 255.0)
-                return (int(hsv[0] * 255.0), int(hsv[1] * 255.0), int(hsv[2] * 255.0))
+                return (int(hsv[0] * 255.0), int(hsv[1] * 255.0),
+                        int(hsv[2] * 255.0))
 
             # Convert all palette entries to HSV888 and write to the output
-            palette_descriptor.palette_entries = list(map(rgb888_to_qmk_hsv888, palette))
-            vprint(f'{f"Frame {idx:3d} palette":26s} {fp.tell():5d}d / {fp.tell():04X}h')
+            palette_descriptor.palette_entries = list(
+                map(rgb888_to_qmk_hsv888, palette))
+            vprint(
+                f'{f"Frame {idx:3d} palette":26s} {fp.tell():5d}d / {fp.tell():04X}h'
+            )
             palette_descriptor.write(fp)
 
         # Write out the delta info if required
@@ -376,13 +390,16 @@ def _save(im, fp, filename):
             delta_descriptor.bottom = location[1] + size[1] - 1
 
             # Write the delta frame to the output
-            vprint(f'{f"Frame {idx:3d} delta":26s} {fp.tell():5d}d / {fp.tell():04X}h')
+            vprint(
+                f'{f"Frame {idx:3d} delta":26s} {fp.tell():5d}d / {fp.tell():04X}h'
+            )
             delta_descriptor.write(fp)
 
         # Write out the data for this frame to the output
         data_descriptor = QGFFrameDataDescriptorV1()
         data_descriptor.data = image_data
-        vprint(f'{f"Frame {idx:3d} data":26s} {fp.tell():5d}d / {fp.tell():04X}h')
+        vprint(
+            f'{f"Frame {idx:3d} data":26s} {fp.tell():5d}d / {fp.tell():04X}h')
         data_descriptor.write(fp)
 
     # Iterate over each if the input frames, writing it to the output in the process
@@ -404,5 +421,7 @@ def _save(im, fp, filename):
 Image.register_open(QGFImageFile.format, QGFImageFile, _accept)
 Image.register_save(QGFImageFile.format, _save)
 Image.register_save_all(QGFImageFile.format, _save)
-Image.register_extension(QGFImageFile.format, f".{QGFImageFile.format.lower()}")
-Image.register_mime(QGFImageFile.format, f"image/{QGFImageFile.format.lower()}")
+Image.register_extension(QGFImageFile.format,
+                         f".{QGFImageFile.format.lower()}")
+Image.register_mime(QGFImageFile.format,
+                    f"image/{QGFImageFile.format.lower()}")

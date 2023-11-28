@@ -30,8 +30,7 @@ class Logger:
 
 
 class Context(object):
-    def __init__(self, file, debug):
-        self.file = file
+    def __init__(self, debug):
         self.debug = debug
 
     @property
@@ -40,29 +39,29 @@ class Context(object):
 
 
 @click.group()
-@click.argument('input_file', type=click.File('rb'))
 @click.option('--debug/--no-debug', default=True, envvar='REPO_DEBUG')
 @click.pass_context
-def oled_utils(ctx, input_file, debug):
+def oled_utils(ctx, debug):
     """
     ModelOLED 圖片轉換 Command Line Interface.
     """
-    ctx.obj = Context(file=input_file, debug=debug)
+    ctx.obj = Context(debug=debug)
     ctx.obj.logger.debug("debug mode for oled-utils.")
 
 
 @oled_utils.command()
 @click.pass_obj
-def graphic_resize_format(ctx):
+@click.argument('input_file', type=click.File('rb'))
+def graphic_resize_format(ctx, input_file):
     """
     將圖片轉換成 64x48 pixel大小.
     """
-    graphic = Image.open(ctx.file)
-    ctx.logger.debug(ctx.file.name)
+    graphic = Image.open(input_file)
+    ctx.logger.debug(input_file.name)
 
     extension = graphic.format.lower()
     output = open(
-        f"{ctx.file.name.replace(f'.{extension}', '')}-resized.{extension}",
+        f"{input_file.name.replace(f'.{extension}', '')}-resized.{extension}",
         "wb")
     resized_img = []
     for i in range(graphic.n_frames):
@@ -78,17 +77,29 @@ def graphic_resize_format(ctx):
 
 @oled_utils.command()
 @click.pass_obj
-def graphic2qgf(ctx):
+@click.argument('input_file', type=click.File('rb'))
+@click.option('-d',
+              '--no-deltas',
+              type=bool,
+              is_flag=True,
+              default=True,
+              show_default=True,
+              help='Disables the use of delta frames when encoding animations.'
+              )
+def graphic2qgf(ctx, input_file, no_deltas):
     """
-    轉換圖片至QGF(RGB252, setting)檔案格式.
+    轉換圖片至QGF(RGB252)檔案格式.
     """
-    graphic = Image.open(ctx.file)
+    ctx.logger.debug(
+        f"options, file_path={input_file.name}, no_deltas={no_deltas}")
+
+    graphic = Image.open(input_file)
 
     extension = graphic.format.lower()
-    output = open(f"{ctx.file.name.replace(f'.{extension}', '')}.qgf", "wb")
+    output = open(f"{input_file.name.replace(f'.{extension}', '')}.qgf", "wb")
     graphic.save(output,
                  "QGF",
-                 use_deltas=False,
+                 use_deltas=not no_deltas,
                  use_rle=True,
                  qmk_format=painter.valid_formats["rgb565"])
     ctx.logger.debug(f"saved, path={output.name}")
