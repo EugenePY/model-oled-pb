@@ -79,19 +79,19 @@ def graphic_resize_format(ctx, input_file):
 @click.pass_obj
 @click.argument('input_file', type=click.File('rb'))
 @click.option('-d',
-              '--no-deltas',
+              '--deltas',
               type=bool,
               is_flag=True,
-              default=True,
-              show_default=True,
+              default=False,
+              show_default=False,
               help='Disables the use of delta frames when encoding animations.'
               )
-def graphic2qgf(ctx, input_file, no_deltas):
+def graphic2qgf(ctx, input_file, deltas):
     """
     轉換圖片至QGF(RGB252)檔案格式.
     """
     ctx.logger.debug(
-        f"options, file_path={input_file.name}, no_deltas={no_deltas}")
+        f"options, file_path={input_file.name}, deltas={deltas}")
 
     graphic = Image.open(input_file)
 
@@ -99,7 +99,7 @@ def graphic2qgf(ctx, input_file, no_deltas):
     output = open(f"{input_file.name.replace(f'.{extension}', '')}.qgf", "wb")
     graphic.save(output,
                  "QGF",
-                 use_deltas=not no_deltas,
+                 use_deltas=deltas,
                  use_rle=True,
                  qmk_format=painter.valid_formats["rgb565"])
     ctx.logger.debug(f"saved, path={output.name}")

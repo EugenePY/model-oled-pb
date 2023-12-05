@@ -76,12 +76,12 @@
 
 === "OSX/Terminal"
     ```
-    oled-utils.osx {path/欲轉換得檔案.gif/.png} graphic-resize-format
+    oled-utils.osx graphic-resize-format {path/欲轉換得檔案.gif/.png}
     ```
 
 === "Windows/QMK MSYS" 
     ```
-    oled-utils.win {path/欲轉換得檔案.gif/.png} graphic-resize-format
+    oled-utils.win graphic-resize-format {path/欲轉換得檔案.gif/.png} 
     ```
 
 
@@ -108,13 +108,30 @@
 
 === "OSX/Terminal"
     ```
-    oled-utils.osx {path/欲轉換得檔案.gif/.png} graphic2qgf
+    oled-utils.osx graphic2qgf {path/欲轉換得檔案.gif/.png} 
     ```
 
 === "Windows/QMK MSYS" 
     ```
-    oled-utils.win {path/欲轉換得檔案.gif/.png} graphic2qgf
+    oled-utils.win graphic2qgf {path/欲轉換得檔案.gif/.png} 
     ```
+
+```noted
+oled-utils預設會將 .QGF(Quantum Graphic Format) 不使用壓縮(no-delta=True)演算法，
+由於delta演算法可能會有破圖的風險，為避免破圖所以預設為不壓縮，如使用者有壓縮需求
+可以在 oled-utils的command 加上-d的選項。
+```
+
+=== "OSX/Terminal"
+    ```
+    oled-utils.osx graphic2qgf -d {path/欲轉換得檔案.gif/.png} 
+    ```
+
+=== "Windows/QMK MSYS" 
+    ```
+    oled-utils.win graphic2qgf -d {path/欲轉換得檔案.gif/.png} 
+    ```
+
 
 
 
