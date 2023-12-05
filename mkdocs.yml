@@ -3,9 +3,9 @@ repo_url: https://github.com/EugenePY/model-oled-pb
 nav:
     - 主要功能: features.md
     - Flashing韌體: firmware_update.md
+    - OLED-UTILS: oled_util_guide.md
     - 更新圖片: update_graphics.md
     - VIA: via.md
-    - OLED-UTILS: oled_util_guide.md
 
 theme:
   name: material
